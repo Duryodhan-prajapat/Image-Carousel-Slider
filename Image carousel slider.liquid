@@ -1,0 +1,429 @@
+<style>
+
+ .{{ section.id }}--Image-carousel-slider-main{
+    position: relative;
+    width: 100%;
+    height: 800px;
+   margin-top: {{section.settings.top-margin}}px;
+   margin-bottom: {{section.settings.bottom-margin}}px;
+  }
+  .Image-carousel-slider-item {
+  width: 200px;
+  height: 300px;
+  list-style-type: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px;
+  box-shadow: 0 20px 30px rgba(255,255,255,0.3) inset;
+  transition: transform 0.1s, left 0.75s, top 0.75s, width 0.75s, height 0.75s;
+  }
+
+  .Image-carousel-slider-item:nth-child(1), .Image-carousel-slider-item:nth-child(2) {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 1;
+  }
+
+ .Image-carousel-slider-item:nth-child(3) { left: 50%; }
+  .Image-carousel-slider-item:nth-child(4) { left: calc(50% + 220px); }
+  .Image-carousel-slider-item:nth-child(5) { left: calc(50% + 440px); }
+  /* .Image-carousel-slider-item:nth-child(6) { left: calc(50% + 660px); opacity: 0; } */
+
+.Image-carousel-slider-content {
+  width: 30vw;
+  position: absolute;
+  top: 50%;
+  left: 5rem;
+  transform: translateY(-50%);
+  font: 400 0.85rem helvetica,sans-serif;
+  color: white;
+  text-shadow: 0 3px 8px rgba(0,0,0,0.5);
+  opacity: 0;
+  display: none;
+  }
+
+ .Image-carousel-slider-content .Image-carousel-slider-title {
+    text-transform: uppercase;
+    font-size: 4rem;
+    color: white;
+  }
+
+ .Image-carousel-slider-content .Image-carousel-slider-description {
+    line-height: 1.7;
+    margin: 1rem 0 1.5rem;
+    font-size: 2rem;
+  }
+
+ .Image-carousel-slider-content button {
+    width: fit-content;
+    background-color: rgba(0,0,0,0.1);
+    color: white;
+    font-size: 18px;
+    border: 2px solid white;
+    border-radius: 0.25rem;
+    padding: 0.75rem;
+    cursor: pointer;
+  }
+
+.Image-carousel-slider-item:nth-of-type(2) .Image-carousel-slider-content {
+  display: block;
+  animation: show 0.75s ease-in-out 0.3s forwards;
+}
+  
+.prev, .next{
+  width: 61px;
+  height: 61px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  font-size: 30px;
+  font-weight: 700;
+}
+  .prev:hover , .next:hover{
+    cursor: pointer;
+  }
+@keyframes show {
+  0% {
+    filter: blur(5px);
+    transform: translateY(calc(-50% + 75px));
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.nav {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  user-select: none;
+}
+
+.nav.btn {
+    background-color: rgba(255,255,255,0.5);
+    color: rgba(0,0,0,0.7);
+    border: 2px solid rgba(0,0,0,0.6);
+    margin: 0 0.25rem;
+    padding: 0.75rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+  
+
+@media (min-width: 749px) and (max-width: 900px) {
+  .Image-carousel-slider-content{
+    text-align: center;
+    top: 30% !important;
+    width: 80% !important;
+    left: 4rem !important;
+  }
+   .Image-carousel-slider-content .Image-carousel-slider-title { font-size: 3rem; }
+   .Image-carousel-slider-content .Image-carousel-slider-description { font-size: 2rem; }
+   .Image-carousel-slider-content  button { font-size: 20px; }
+
+  .Image-carousel-slider-item {
+    width: 160px;
+    height: 270px;
+  }
+
+   .Image-carousel-slider-item:nth-child(3) { left: 3%; top: 75%; }
+   .Image-carousel-slider-item:nth-child(4) { left: calc(3% + 170px); top: 75%; }
+   .Image-carousel-slider-item:nth-child(5) { left: calc(3% + 340px); top: 75%; }
+  }
+
+@media (max-width: 749px){
+  .Image-carousel-slider-content{
+    text-align: center;
+    top: 30% !important;
+    width: 80% !important;
+    left: 4rem !important;
+  }
+    .Image-carousel-slider-content .Image-carousel-slider-title { font-size: 3rem; }
+    .Image-carousel-slider-content .Image-carousel-slider-description  { font-size: 2rem; }
+    .Image-carousel-slider-content button { font-size: 20px; }
+
+  .Image-carousel-slider-item {
+    width: 130px;
+    height: 220px;
+  }
+
+    .Image-carousel-slider-item:nth-child(3) { left: 3%; top: 75%; }
+   .Image-carousel-slider-item:nth-child(4) { left: calc(3% + 140px); top: 75%;}
+    .Image-carousel-slider-item:nth-child(5) { left: calc(3% + 280px); top: 75%; }
+  }
+
+</style>
+
+<div id={{ section.id}} class= "{{ section.id }}--Image-carousel-slider-main">
+  <ul class="slider">
+    <li class="Image-carousel-slider-item" style="background-image: url('{{section.settings.Slide-1-image | image_url}}')">
+      <div class="Image-carousel-slider-content" >
+        <h2 class="Image-carousel-slider-title"> {{ section.settings.slide-1-heading }} </h2>
+        <p class="Image-carousel-slider-description"> {{ section.settings.slide-1-desc }} </p>
+        <button src="{{ section.settings.slide-1-btn-url }}"> {{ section.settings.slide-1-btn-text }} </button>
+      </div>
+    </li>
+     <li class="Image-carousel-slider-item" style="background-image: url('{{section.settings.Slide-2-image | image_url}}')">
+      <div class="Image-carousel-slider-content" >
+        <h2 class="Image-carousel-slider-title"> {{ section.settings.slide-2-heading }} </h2>
+        <p class="Image-carousel-slider-description"> {{ section.settings.slide-2-desc }} </p>
+        <button src="{{ section.settings.slide-2-btn-url }}"> {{ section.settings.slide-2-btn-text }} </button>
+      </div>
+    </li>
+     <li class="Image-carousel-slider-item" style="background-image: url('{{section.settings.Slide-3-image | image_url}}')">
+      <div class="Image-carousel-slider-content" >
+        <h2 class="Image-carousel-slider-title"> {{ section.settings.slide-3-heading }} </h2>
+        <p class="Image-carousel-slider-description"> {{ section.settings.slide-3-desc }} </p>
+        <button src="{{ section.settings.slide-3-btn-url }}"> {{ section.settings.slide-3-btn-text }} </button>
+      </div>
+    </li>
+     <li class="Image-carousel-slider-item" style="background-image: url('{{section.settings.Slide-4-image | image_url}}')">
+      <div class="Image-carousel-slider-content" >
+        <h2 class="Image-carousel-slider-title"> {{ section.settings.slide-4-heading }} </h2>
+        <p class="Image-carousel-slider-description"> {{ section.settings.slide-4-desc }} </p>
+        <button src="{{ section.settings.slide-4-btn-url }}"> {{ section.settings.slide-4-btn-text }} </button>
+      </div>
+    </li>
+     <li class="Image-carousel-slider-item" style="background-image: url('{{section.settings.Slide-5-image | image_url}}')">
+      <div class="Image-carousel-slider-content" >
+        <h2 class="Image-carousel-slider-title"> {{ section.settings.slide-5-heading }} </h2>
+        <p class="Image-carousel-slider-description"> {{ section.settings.slide-5-desc }} </p>
+        <button src="{{ section.settings.slide-5-btn-url }}"> {{ section.settings.slide-5-btn-text }} </button>
+      </div>
+    </li>
+  </ul>
+   <nav class='nav'>
+    <button class='btn prev'>&#x2190; </button>
+    <button class='btn next'>&#x2192; </button>
+  </nav>
+  
+</div>
+<script>
+
+   const slider = document.querySelector('.slider');
+let intervalId;
+
+function activate(e) {
+  const items = document.querySelectorAll('.Image-carousel-slider-item');
+
+  if (e.target.matches('.next')) {
+    slider.append(items[0]);
+  } else if (e.target.matches('.prev')) {
+    slider.prepend(items[items.length - 1]);
+  }
+
+  // Clear the existing interval
+  if (intervalId) {
+    clearInterval(intervalId);
+  }
+
+  // Restart the interval immediately, with a 3-second timer
+  intervalId = setInterval(() => {
+    const syntheticEvent = new Event('click', { bubbles: true, cancelable: true });
+    const nextButton = document.querySelector('.next');
+    nextButton.dispatchEvent(syntheticEvent);
+  }, 3000);
+}
+
+document.addEventListener('click', activate, false);
+
+// Start the interval immediately when the page loads
+intervalId = setInterval(() => {
+  const syntheticEvent = new Event('click', { bubbles: true, cancelable: true });
+  const nextButton = document.querySelector('.next');
+  nextButton.dispatchEvent(syntheticEvent);
+}, 5000);
+</script>
+
+{% schema %}
+  {
+    "name": "Image Carousel Slider",
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+    "settings": [
+        {  
+        "type": "image_picker",
+        "id": "Slide-1-image",
+        "label": "Desktop Image"
+      },
+      {
+        "type": "text",
+        "id": "slide-1-heading",
+        "label": "Write Heading",
+        "default": "Heading"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "slide-1-desc",
+        "label": "Write Heading",
+        "default": "Description"
+      },
+      {
+        "type": "text",
+        "id": "slide-1-btn-text",
+        "label": "Button Label",
+        "default": "Button"
+      },
+      {
+        "type": "url",
+        "id": "slide-1-btn-url",
+        "label": "Button Link"
+      },
+      {
+            
+        "type": "image_picker",
+        "id": "Slide-2-image",
+        "label": "Desktop Image"
+      },
+      {
+        "type": "text",
+        "id": "slide-2-heading",
+        "label": "Write Heading",
+        "default": "Heading"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "slide-2-desc",
+        "label": "Write Heading",
+        "default": "Description"
+      },
+      {
+        "type": "text",
+        "id": "slide-2-btn-text",
+        "label": "Button Label",
+        "default": "Button"
+      },
+      {
+        "type": "url",
+        "id": "slide-2-btn-url",
+        "label": "Button Link"
+      },
+      {
+            
+        "type": "image_picker",
+        "id": "Slide-3-image",
+        "label": "Desktop Image"
+      },
+      {
+        "type": "text",
+        "id": "slide-3-heading",
+        "label": "Write Heading",
+        "default": "Heading"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "slide-3-desc",
+        "label": "Write Heading",
+        "default": "Description"
+      },
+      {
+        "type": "text",
+        "id": "slide-3-btn-text",
+        "label": "Button Label",
+        "default": "Button"
+      },
+      {
+        "type": "url",
+        "id": "slide-3-btn-url",
+        "label": "Button Link"
+      },
+      {
+            
+        "type": "image_picker",
+        "id": "Slide-4-image",
+        "label": "Desktop Image"
+      },
+      {
+        "type": "text",
+        "id": "slide-4-heading",
+        "label": "Write Heading",
+        "default": "Heading"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "slide-4-desc",
+        "label": "Write Heading",
+        "default": "Description"
+      },
+      {
+        "type": "text",
+        "id": "slide-4-btn-text",
+        "label": "Button Label",
+        "default": "Button"
+      },
+      {
+        "type": "url",
+        "id": "slide-4-btn-url",
+        "label": "Button Link"
+      },
+      {
+            
+        "type": "image_picker",
+        "id": "Slide-5-image",
+        "label": "Desktop Image"
+      },
+      {
+        "type": "text",
+        "id": "slide-5-heading",
+        "label": "Write Heading",
+        "default": "Heading"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "slide-5-desc",
+        "label": "Write Heading",
+        "default": "Description"
+      },
+      {
+        "type": "text",
+        "id": "slide-5-btn-text",
+        "label": "Button Label",
+        "default": "Button"
+      },
+      {
+        "type": "url",
+        "id": "slide-5-btn-url",
+        "label": "Button Link"
+      },
+      {
+        "type": "range",
+        "id": "top-margin",
+        "label": "Top Margin",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "bottom-margin",
+        "label": "Bottom Margin",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "default": 0
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image-Carousel-Slider"
+      }
+    ]
+  }
+{% endschema %}
